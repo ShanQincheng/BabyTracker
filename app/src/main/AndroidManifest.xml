@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FeedStartTrack"></activity>
+        <activity android:name=".Feed"></activity>
     </application>
 
 </manifest>
