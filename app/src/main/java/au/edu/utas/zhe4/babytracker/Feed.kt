@@ -7,6 +7,7 @@ import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.entities.Feed
 import au.edu.utas.zhe4.babytracker.entities.FeedingSide
 import au.edu.utas.zhe4.babytracker.entities.FeedingType
+import au.edu.utas.zhe4.babytracker.entities.createFeed
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDateTime
@@ -35,7 +36,7 @@ class Feed : AppCompatActivity() {
                                             FeedingType.BOTTLE
 
             val strDateTime : String = ui.tvTimePickerCurrentTime.text.toString()
-            val formatter = DateTimeFormatter.ofPattern("hh:mm")
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             var feedTime : LocalDateTime = LocalDateTime.parse(strDateTime, formatter)
 
             val feedSide : FeedingSide = if(ui.rbFeedSideLeft.isChecked)
@@ -46,16 +47,27 @@ class Feed : AppCompatActivity() {
                                             .toInt().toDuration(DurationUnit.MINUTES)
             val note : String = ui.tietNote.text.toString()
 
-            val feedObj : Feed = Feed(feedType, feedTime, feedSide, feedDuration, note)
+            val feedObj : Feed = createFeed(feedType, feedTime, feedSide, feedDuration, note)
 
-            //update the database
-            feedingCollection.document(feedObj.id!!)
-                .set(feedObj)
+            // add to the database
+            feedingCollection
+                .add(feedObj)
                 .addOnSuccessListener {
-                    Log.d(FIREBASE_TAG, "Successfully updated feeding ${feedObj.id}")
-                    //return to the list
-                    finish()
+                    Log.d(FIREBASE_TAG, "Document created with id ${it.id}")
+                    feedObj.id = it.id
                 }
+                .addOnFailureListener {
+                    Log.e(FIREBASE_TAG, "Error writing document", it)
+                }
+
+//            //update the database
+//            feedingCollection.document(feedObj.id!!)
+//                .set(feedObj)
+//                .addOnSuccessListener {
+//                    Log.d(FIREBASE_TAG, "Successfully updated feeding ${feedObj.id}")
+//                    //return to the list
+//                    finish()
+//                }
         }
     }
 }

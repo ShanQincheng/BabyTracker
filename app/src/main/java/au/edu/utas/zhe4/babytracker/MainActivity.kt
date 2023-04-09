@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import au.edu.utas.zhe4.babytracker.databinding.ActivityMainBinding
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import au.edu.utas.zhe4.babytracker.entities.Feed
 
 
 class MainActivity : AppCompatActivity() {
