@@ -4,25 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/bt_bottle_feed"
+    <RadioGroup
+        android:id="@+id/rg_bottle_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bottle Feed"
+        android:orientation="horizontal"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bt_breastfeeding"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_breastfeeding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Breastfeeding"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/bt_bottle_feed"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/div_sp_time">
+
+        <RadioButton
+            android:id="@+id/rb_breastfeeding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Breastfeeding" />
+
+        <RadioButton
+            android:id="@+id/rb_bottle_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bottle" />
+    </RadioGroup>
 
     <View
         android:id="@+id/div_sp_time"
@@ -31,7 +36,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_breastfeeding"
+        app:layout_constraintTop_toBottomOf="@id/rg_bottle_feed"
         app:layout_constraintBottom_toTopOf="@id/tv_time_picker_current_time" />
 
     <TextView
@@ -175,6 +180,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Note" />
