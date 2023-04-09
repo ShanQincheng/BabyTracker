@@ -30,18 +30,20 @@ class Feed() {
 }
 
 fun createFeed(
+    id : String? = null,
     type : FeedingType? = FeedingType.BREASTFEEDING,
     time : LocalDateTime? = LocalDateTime.now(),
     side : FeedingSide? = FeedingSide.LEFT,
-    duration : Duration? = Duration.ZERO,
+    duration : Long? = 0,
     note : String? = "",
 ) : Feed
 {
     val feed = Feed()
+    feed.id = id
     feed.type = type
     feed.time = ZonedDateTime.of(time, ZoneId.systemDefault()).toInstant().toEpochMilli()
     feed.side = side
-    feed.duration = duration?.toLong(DurationUnit.SECONDS)
+    feed.duration = duration
     feed.note = note
 
     return feed

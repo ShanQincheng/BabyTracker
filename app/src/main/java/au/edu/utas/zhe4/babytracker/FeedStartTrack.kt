@@ -14,6 +14,10 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import au.edu.utas.zhe4.babytracker.entities.Feed
 
+const val FEEDING_RECORD_INDEX = "Feeding_Record_Index"
+
+val feedingRecords = mutableListOf<Feed>()
+
 class FeedStartTrack : AppCompatActivity() {
 
     private lateinit var ui : ActivityFeedStartTrackBinding
@@ -22,10 +26,13 @@ class FeedStartTrack : AppCompatActivity() {
         ui = ActivityFeedStartTrackBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
+        // tell RecyclerView how to display the items in vertical way
+        ui.rvThisWeek.layoutManager = LinearLayoutManager(this)
+        // link the RecyclerView to the adapter
+        ui.rvThisWeek.adapter = FeedingRecordsAdapter(records = feedingRecords)
+
         val db = Firebase.firestore
         val feedingCollection = db.collection("feedings")
-
-        val feedingRecords = mutableListOf<Feed>()
         //get all feeding records
         feedingCollection
             .get()
@@ -33,7 +40,7 @@ class FeedStartTrack : AppCompatActivity() {
                 //this line clears the list, and prevents a bug where items
                 // would be duplicated upon rotation of screen
                 feedingRecords.clear()
-                Log.d(FIREBASE_TAG, "--- all feeding records ---")
+                Log.d(FIREBASE_TAG, "--- all feeding records --- " + result.size())
                 for (document in result)
                 {
                     Log.d(FIREBASE_TAG, document.toString())
@@ -53,12 +60,48 @@ class FeedStartTrack : AppCompatActivity() {
             val i = Intent(ui.root.context, au.edu.utas.zhe4.babytracker.Feed::class.java)
             startActivity(i)
         }
+    }
 
+    // Is called when the activity is brought back to the foreground.
+    override fun onResume() {
+        super.onResume()
+
+        ui = ActivityFeedStartTrackBinding.inflate(layoutInflater)
+        setContentView(ui.root)
+
+        // tell RecyclerView how to display the items in vertical way
+        ui.rvThisWeek.layoutManager = LinearLayoutManager(this)
+        // link the RecyclerView to the adapter
         ui.rvThisWeek.adapter = FeedingRecordsAdapter(records = feedingRecords)
 
-        // tell RecyclerView how to display the items
-        ui.rvThisWeek.layoutManager = LinearLayoutManager(this).
-            apply { orientation = LinearLayoutManager.HORIZONTAL }
+        val db = Firebase.firestore
+        val feedingCollection = db.collection("feedings")
+        //get all feeding records
+        feedingCollection
+            .get()
+            .addOnSuccessListener { result ->
+                //this line clears the list, and prevents a bug where items
+                // would be duplicated upon rotation of screen
+                feedingRecords.clear()
+                Log.d(FIREBASE_TAG, "--- all feeding records --- " + result.size())
+                for (document in result)
+                {
+                    Log.d(FIREBASE_TAG, document.toString())
+                    val fRecord = document.toObject<Feed>()
+                    fRecord.id = document.id
+                    Log.d(FIREBASE_TAG, fRecord.toString())
+
+                    feedingRecords.add(fRecord)
+                }
+            }
+
+        ui.btStartTrack.setOnClickListener{
+            val i = Intent(ui.root.context, au.edu.utas.zhe4.babytracker.Feed::class.java)
+            startActivity(i)
+        }
+
+        //you may choose to fix the warning that notifyDataSetChanged() is not specific enough using:
+        ui.rvThisWeek.adapter?.notifyDataSetChanged()
     }
 
     // A class that stores references to the View layout of our activity_feed_start_track.xml
@@ -89,6 +132,13 @@ class FeedStartTrack : AppCompatActivity() {
             val record = records[position]
             holder.ui.tvFeedingType.text = record.side.toString()
             holder.ui.tvFeedingNote.text = record.note.toString()
+
+            holder.ui.root.setOnClickListener {
+                val i = Intent(holder.ui.root.context,
+                    au.edu.utas.zhe4.babytracker.Feed::class.java)
+                i.putExtra(FEEDING_RECORD_INDEX, position)
+                startActivity(i)
+            }
         }
 
         override fun getItemCount(): Int {
