@@ -90,6 +90,7 @@ class Feed : AppCompatActivity() {
                         }
 
                     feedingRecords.add(feedObj)
+                    feedingRecords.sortByDescending { it.time }
                     finish()
                 }
                 else -> {
@@ -103,7 +104,9 @@ class Feed : AppCompatActivity() {
                         .addOnFailureListener {
                             Log.e(FIREBASE_TAG, "Error updated feeding record", it)
                         }
+
                     feedingRecords[fRecordID] = feedObj
+                    feedingRecords.sortByDescending { it.time }
                     finish()
                 }
             }

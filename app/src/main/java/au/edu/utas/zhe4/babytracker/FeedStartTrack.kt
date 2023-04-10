@@ -13,6 +13,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import au.edu.utas.zhe4.babytracker.entities.Feed
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 const val FEEDING_RECORD_INDEX = "Feeding_Record_Index"
 
@@ -50,6 +54,7 @@ class FeedStartTrack : AppCompatActivity() {
 
                     feedingRecords.add(fRecord)
                 }
+                feedingRecords.sortByDescending { it.time }
 
                 (ui.rvThisWeek.adapter as FeedingRecordsAdapter).
                     notifyItemRangeChanged(0, feedingRecords.size)
@@ -98,6 +103,12 @@ class FeedStartTrack : AppCompatActivity() {
             holder.ui.tvFeedingType.text = record.type.toString()
             holder.ui.tvFeedingSide.text = record.side.toString()
             holder.ui.tvFeedingNote.text = record.note.toString()
+            holder.ui.tvFeedingTime.text = LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(
+                    record.time!!
+                ),
+                TimeZone.getDefault().toZoneId(),
+            ).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString()
 
             holder.ui.root.setOnClickListener {
                 val i = Intent(holder.ui.root.context,
