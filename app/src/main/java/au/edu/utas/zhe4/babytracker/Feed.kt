@@ -8,6 +8,8 @@ import au.edu.utas.zhe4.babytracker.entities.Feed
 import au.edu.utas.zhe4.babytracker.entities.FeedingSide
 import au.edu.utas.zhe4.babytracker.entities.FeedingType
 import au.edu.utas.zhe4.babytracker.entities.createFeed
+import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
+import au.edu.utas.zhe4.babytracker.utils.TimeStringToLocalDateTime
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.Instant
@@ -37,12 +39,7 @@ class Feed : AppCompatActivity() {
                 FeedingType.BREASTFEEDING -> ui.rgFeedType.check(ui.rbBreastfeeding.id)
                 else -> ui.rgFeedType.check(ui.rbBottleFeed.id)
             }
-            ui.tvTimePickerCurrentTime.text = LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(
-                    fRecordObj.time!!
-                ),
-                TimeZone.getDefault().toZoneId(),
-            ).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).toString()
+            ui.tvTimePickerCurrentTime.text = LongToLocalDateTimeString(fRecordObj.time!!)
             when(fRecordObj.side) {
                 FeedingSide.LEFT -> ui.rgFeedSide.check(ui.rbFeedSideLeft.id)
                 else -> ui.rgFeedSide.check(ui.rbFeedSideRight.id)
@@ -63,8 +60,7 @@ class Feed : AppCompatActivity() {
                                             FeedingType.BOTTLE
 
             val strDateTime : String = ui.tvTimePickerCurrentTime.text.toString()
-            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-            var feedTime : LocalDateTime = LocalDateTime.parse(strDateTime, formatter)
+            val feedTime : LocalDateTime = TimeStringToLocalDateTime(strDateTime)
 
             val feedSide : FeedingSide = if(ui.rbFeedSideLeft.isChecked)
                                             FeedingSide.LEFT

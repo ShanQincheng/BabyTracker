@@ -1,5 +1,6 @@
 package au.edu.utas.zhe4.babytracker.entities
 
+import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLong
 import com.google.firebase.firestore.Exclude
 import java.sql.Timestamp
 import java.time.Instant
@@ -41,7 +42,7 @@ fun createFeed(
     val feed = Feed()
     feed.id = id
     feed.type = type
-    feed.time = ZonedDateTime.of(time, ZoneId.systemDefault()).toInstant().toEpochMilli()
+    feed.time = LocalDateTimeToLong(time)
     feed.side = side
     feed.duration = duration
     feed.note = note
