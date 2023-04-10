@@ -88,6 +88,8 @@ class Feed : AppCompatActivity() {
                         .addOnFailureListener {
                             Log.e(FIREBASE_TAG, "Error writing document", it)
                         }
+
+                    feedingRecords.add(feedObj)
                     finish()
                 }
                 else -> {
@@ -101,6 +103,7 @@ class Feed : AppCompatActivity() {
                         .addOnFailureListener {
                             Log.e(FIREBASE_TAG, "Error updated feeding record", it)
                         }
+                    feedingRecords[fRecordID] = feedObj
                     finish()
                 }
             }
