@@ -14,7 +14,6 @@ enum class FeedingSide {
 
 class Feed() {
     var id : String? = null
-
     var type : FeedingType? = FeedingType.BREASTFEEDING
     var time : Long? = System.currentTimeMillis()
     var side : FeedingSide? = FeedingSide.LEFT

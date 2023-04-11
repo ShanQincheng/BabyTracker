@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import au.edu.utas.zhe4.babytracker.FIREBASE_TAG
 import au.edu.utas.zhe4.babytracker.FeedStartTrack
+import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedStartTrackBinding
+import au.edu.utas.zhe4.babytracker.databinding.FeedRecordBinding
 import au.edu.utas.zhe4.babytracker.entities.Feed
 import au.edu.utas.zhe4.babytracker.feedingRecords
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
@@ -45,8 +47,10 @@ class FeedStartTrackActivity : AppCompatActivity() {
 //            notifyItemRangeChanged(0, viewModel.feedingRecords.size)
 
         ui.btStartTrack.setOnClickListener{
-            val i = Intent(ui.root.context, au.edu.utas.zhe4.babytracker.Feed::class.java)
-            startActivity(i)
+//            val i = Intent(ui.root.context, au.edu.utas.zhe4.babytracker.Feed::class.java)
+//            startActivity(i)
+            val ui = ActivityFeedBinding.inflate(layoutInflater)
+            setContentView(ui.root)
         }
     }
 }

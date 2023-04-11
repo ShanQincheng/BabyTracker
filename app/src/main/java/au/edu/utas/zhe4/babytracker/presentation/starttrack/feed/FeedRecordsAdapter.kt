@@ -44,7 +44,7 @@ class FeedRecordsAdapter(
 
         holder.ui.root.setOnClickListener {
             val i = Intent(holder.ui.root.context,
-                au.edu.utas.zhe4.babytracker.Feed::class.java)
+                au.edu.utas.zhe4.babytracker.presentation.records.feed.FeedRecordsActivity::class.java)
             i.putExtra(FEEDING_RECORD_INDEX, position)
             context.startActivity(i)
         }
