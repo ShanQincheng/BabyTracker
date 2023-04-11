@@ -2,14 +2,22 @@ plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
     id 'kotlin'
+
+    // google Firestore
+    id 'com.google.gms.google-services'
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics-ktx:'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

@@ -1,7 +1,7 @@
 package au.edu.utas.zhe4.babytracker.domain
 
 import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLong
-import com.google.firebase.firestore.Exclude
+//import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
 
 enum class FeedingType {
@@ -13,7 +13,7 @@ enum class FeedingSide {
 }
 
 class Feed() {
-    @get:Exclude var id : String? = null
+    var id : String? = null
 
     var type : FeedingType? = FeedingType.BREASTFEEDING
     var time : Long? = System.currentTimeMillis()

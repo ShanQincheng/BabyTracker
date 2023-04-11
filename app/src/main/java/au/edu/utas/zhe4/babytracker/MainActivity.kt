@@ -9,6 +9,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import au.edu.utas.zhe4.babytracker.entities.Feed
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.feed.FeedStartTrackActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(ui.root)
 
         ui.cvFeed.setOnClickListener {
-            val i = Intent(ui.root.context, FeedStartTrack::class.java)
+            val i = Intent(ui.root.context, FeedStartTrackActivity::class.java)
             startActivity(i)
         }
 

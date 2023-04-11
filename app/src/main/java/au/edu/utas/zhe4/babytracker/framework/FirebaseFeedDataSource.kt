@@ -23,8 +23,9 @@ class FirebaseFeedDataSource : FeedDataSource {
             }
     }
 
-    override fun readAll(): List<Feed> {
+    override fun readAll(completion: (MutableList<Feed>) -> Unit) {
         val feedingRecords = ArrayList<Feed>()
+        Log.d(FIREBASE_TAG, "before feeding Collection: " + feedingRecords.size)
         //get all feeding records
         feedingCollection
             .get()
@@ -39,10 +40,10 @@ class FirebaseFeedDataSource : FeedDataSource {
                     Log.d(FIREBASE_TAG, fRecord.toString())
 
                     feedingRecords.add(fRecord)
+                    Log.d(FIREBASE_TAG, "during feeding Collection: " + feedingRecords.size)
                 }
+                completion(feedingRecords)
             }
-
-        return feedingRecords.toList()
     }
 
     override fun modify(feed: Feed) {

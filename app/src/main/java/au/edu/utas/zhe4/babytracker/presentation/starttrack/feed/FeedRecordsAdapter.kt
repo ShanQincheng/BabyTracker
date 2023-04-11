@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.FeedRecordBinding
-import au.edu.utas.zhe4.babytracker.entities.Feed
+import au.edu.utas.zhe4.babytracker.domain.Feed
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class FeedRecordsAdapter(
-    private val records: MutableList<Feed>,
+    private val records: MutableList<Feed> = mutableListOf(),
     private val context: Context,
 ) :
     RecyclerView.Adapter<FeedRecordsAdapter.ViewHolder>()
@@ -35,7 +35,7 @@ class FeedRecordsAdapter(
 
     // Populates each row data as required. First we get the data out of the array,
     // then we set the TextView in the row:
-    override fun onBindViewHolder(holder: FeedRecordsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val record = records[position]
         holder.ui.tvFeedingType.text = record.type.toString()
         holder.ui.tvFeedingSide.text = record.side.toString()
@@ -52,5 +52,12 @@ class FeedRecordsAdapter(
 
     override fun getItemCount(): Int {
         return records.size
+    }
+
+    fun update(feedingRecords: MutableList<Feed>) {
+        records.clear()
+        records.addAll(feedingRecords)
+
+        notifyItemRangeChanged(0, records.size)
     }
 }
