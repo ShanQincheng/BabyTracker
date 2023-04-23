@@ -10,6 +10,9 @@ import java.util.*
 
 val dateTimeformatPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
 
+fun randomUUID(): String {
+    return UUID.randomUUID().toString()
+}
 fun CurrentYear(): Int {
     val rightNow = Calendar.getInstance()
     return rightNow.get(Calendar.YEAR)

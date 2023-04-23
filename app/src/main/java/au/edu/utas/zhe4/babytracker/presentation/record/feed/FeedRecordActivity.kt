@@ -12,6 +12,7 @@ import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.domain.FeedingSide
 import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
+import au.edu.utas.zhe4.babytracker.utils.randomUUID
 
 class FeedRecordActivity : AppCompatActivity() {
     private lateinit var ui : ActivityFeedBinding
@@ -89,9 +90,9 @@ class FeedRecordActivity : AppCompatActivity() {
     }
 
     private fun updateViewModelByIntent(viewModel: FeedRecordViewModel) {
-        if (intent.hasExtra(FEEDING_RECORD_INDEX)) {
-            val id = intent.getIntExtra(FEEDING_RECORD_INDEX, -1)
-            viewModel.updateID(id)
+        if (intent.hasExtra("id")) {
+            val id = intent.getStringExtra("id")
+            viewModel.updateID(id!!)
         }
 
         if (intent.hasExtra("feedingType")) {

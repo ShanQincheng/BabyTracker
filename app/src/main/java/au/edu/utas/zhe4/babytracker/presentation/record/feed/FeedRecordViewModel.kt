@@ -12,6 +12,7 @@ import au.edu.utas.zhe4.babytracker.utils.CurrentTime
 import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.utils.TimeStringToLocalDateTime
+import au.edu.utas.zhe4.babytracker.utils.randomUUID
 import java.time.LocalDate
 
 
@@ -28,7 +29,7 @@ class FeedRecordViewModel(
     val feedingTime = MutableLiveData<String>(LongToLocalDateTimeString(CurrentTime()))
     val feedingSide = MutableLiveData<String>(FeedingSide.LEFT.toString())
     val feedingDuration = MutableLiveData<String>("0")
-    var feedingNote = MutableLiveData<String>("0")
+    var feedingNote = MutableLiveData<String>("")
 
     fun setDate(year: Int, month: Int, day: Int) {
         val hour = TimeStringToLocalDateTime(feedingTime.value).hour
@@ -49,11 +50,8 @@ class FeedRecordViewModel(
         feedingTime.value = LocalDateTimeToLocalDateTimeString(date)
     }
 
-    fun updateID(id: Int) {
-        if (id != -1) {
-            ID = id.toString()
-            return
-        }
+    fun updateID(id: String) {
+        ID = id
     }
 
     fun updateFeedingType(fType: String) {
@@ -85,7 +83,10 @@ class FeedRecordViewModel(
             feedingNote.value)
 
         when(feedObj.id.isNullOrEmpty()) {
-            true -> useCases.addFeed(feedObj)
+            true -> {
+                feedObj.id = randomUUID()
+                useCases.addFeed(feedObj)
+            }
             else -> useCases.modifyFeed(feedObj)
         }
     }

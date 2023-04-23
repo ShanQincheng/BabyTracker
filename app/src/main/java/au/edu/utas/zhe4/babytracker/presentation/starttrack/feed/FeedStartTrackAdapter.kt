@@ -46,6 +46,7 @@ class FeedStartTrackAdapter(
         holder.ui.root.setOnClickListener {
             val i = Intent(holder.ui.root.context, FeedRecordActivity::class.java)
             i.putExtra(FEEDING_RECORD_INDEX, position)
+            i.putExtra("id", record.id)
             i.putExtra("feedingType", holder.ui.tvFeedingType.text)
             i.putExtra("feedingTime", holder.ui.tvFeedingTime.text)
             i.putExtra("feedingSide", holder.ui.tvFeedingSide.text)
