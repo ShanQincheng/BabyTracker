@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
@@ -52,6 +53,10 @@ class FeedRecordActivity : AppCompatActivity() {
 
         showPage(viewModel)
 
+        viewModel.feedingTime.observe(this, Observer {
+            showFeedingTime(viewModel)
+        })
+
         ui.rgFeedType.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 ui.rbBreastfeeding.id ->
@@ -59,6 +64,11 @@ class FeedRecordActivity : AppCompatActivity() {
                 else ->
                     viewModel.updateFeedingType(FeedingType.BOTTLE.toString())
             }
+        }
+
+        ui.btTimePickerPopUp.setOnClickListener {
+            val datePicker = FeedRecordDatePickerFragment(viewModel)
+            datePicker.show(supportFragmentManager, "datePicker")
         }
 
         ui.rgFeedSide.setOnCheckedChangeListener { _, checkedId ->

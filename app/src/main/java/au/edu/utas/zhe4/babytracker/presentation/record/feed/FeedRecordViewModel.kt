@@ -8,8 +8,12 @@ import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.domain.createFeed
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases
+import au.edu.utas.zhe4.babytracker.utils.CurrentHour
+import au.edu.utas.zhe4.babytracker.utils.CurrentMinute
 import au.edu.utas.zhe4.babytracker.utils.CurrentTime
+import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
+import java.time.LocalDate
 
 
 class FeedRecordViewModel(
@@ -26,6 +30,12 @@ class FeedRecordViewModel(
     val feedingSide = MutableLiveData<String>(FeedingSide.LEFT.toString())
     val feedingDuration = MutableLiveData<String>("0")
     var feedingNote = MutableLiveData<String>("0")
+
+    fun setDate(year: Int, month: Int, day: Int) {
+        val date = LocalDate.of(year, month, day).atTime(CurrentHour(), CurrentMinute())
+
+        feedingTime.value = LocalDateTimeToLocalDateTimeString(date)
+    }
 
     fun updateID(id: Int) {
         if (id != -1) {
