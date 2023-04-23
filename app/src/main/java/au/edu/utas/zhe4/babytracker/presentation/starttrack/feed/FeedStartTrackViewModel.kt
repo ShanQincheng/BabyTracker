@@ -27,6 +27,16 @@ class FeedStartTrackViewModel(
 
     fun readAllFeedRecords() {
         val completion = fun (fRecords: MutableList<Feed>) {
+            fRecords.sortWith(Comparator {
+                    lRecord, rRecord ->
+                if (lRecord.time!! < rRecord.time!!)
+                    -1
+                else if(lRecord.id!! < rRecord.id!!)
+                    1
+                else
+                    0
+            })
+            
             feedingRecords.value?.clear()
             feedingRecords.value = fRecords
         }
