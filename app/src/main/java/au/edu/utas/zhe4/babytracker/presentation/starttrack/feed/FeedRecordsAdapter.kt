@@ -10,6 +10,7 @@ import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.FeedRecordBinding
 import au.edu.utas.zhe4.babytracker.domain.Feed
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
+import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordActivity
 
 class FeedRecordsAdapter(
     private val records: MutableList<Feed> = mutableListOf(),
@@ -39,13 +40,18 @@ class FeedRecordsAdapter(
         val record = records[position]
         holder.ui.tvFeedingType.text = record.type.toString()
         holder.ui.tvFeedingSide.text = record.side.toString()
-        holder.ui.tvFeedingNote.text = record.note.toString()
         holder.ui.tvFeedingTime.text = LongToLocalDateTimeString(record.time!!)
+        holder.ui.tvFeedingNote.text = record.note.toString()
 
         holder.ui.root.setOnClickListener {
-            val i = Intent(holder.ui.root.context,
-                au.edu.utas.zhe4.babytracker.presentation.records.feed.FeedRecordsActivity::class.java)
+            val i = Intent(holder.ui.root.context, FeedRecordActivity::class.java)
             i.putExtra(FEEDING_RECORD_INDEX, position)
+            i.putExtra("feedingType", holder.ui.tvFeedingType.text)
+            i.putExtra("feedingTime", holder.ui.tvFeedingTime.text)
+            i.putExtra("feedingSide", holder.ui.tvFeedingSide.text)
+            i.putExtra("feedingDuration", record.duration.toString())
+            i.putExtra("feedingNote", holder.ui.tvFeedingNote.text)
+
             context.startActivity(i)
         }
     }

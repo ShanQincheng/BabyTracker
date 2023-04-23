@@ -37,3 +37,10 @@ fun TimeStringToLong(timeString: String) : Long {
 
     return ZonedDateTime.of(time, ZoneId.systemDefault()).toInstant().toEpochMilli()
 }
+fun DurationStringToLong(durationString: String): Long {
+    return durationString.toLong()
+}
+
+fun CurrentTime() : Long {
+    return System.currentTimeMillis()
+}

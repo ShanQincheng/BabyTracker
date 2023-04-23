@@ -24,7 +24,7 @@
         <activity android:name=".FeedStartTrack"></activity>
         <activity android:name=".Feed"></activity>
         <activity android:name=".presentation.starttrack.feed.FeedStartTrackActivity"></activity>
-        <activity android:name=".presentation.records.feed.FeedRecordsActivity"></activity>
+        <activity android:name=".presentation.record.feed.FeedRecordActivity"></activity>
     </application>
 
 </manifest>
