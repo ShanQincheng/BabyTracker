@@ -19,7 +19,7 @@ class FeedStartTrackActivity : AppCompatActivity() {
         ui = ActivityFeedStartTrackBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        val adapter = FeedRecordsAdapter(context = this)
+        val adapter = FeedStartTrackAdapter(context = this)
         val layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(
             this,

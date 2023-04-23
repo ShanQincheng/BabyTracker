@@ -12,11 +12,11 @@ import au.edu.utas.zhe4.babytracker.domain.Feed
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordActivity
 
-class FeedRecordsAdapter(
+class FeedStartTrackAdapter(
     private val records: MutableList<Feed> = mutableListOf(),
     private val context: Context,
 ) :
-    RecyclerView.Adapter<FeedRecordsAdapter.ViewHolder>()
+    RecyclerView.Adapter<FeedStartTrackAdapter.ViewHolder>()
 {
 
     class ViewHolder(val ui: FeedRecordBinding) : RecyclerView.ViewHolder(ui.root) {
