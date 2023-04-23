@@ -8,11 +8,10 @@ import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.domain.createFeed
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases
-import au.edu.utas.zhe4.babytracker.utils.CurrentHour
-import au.edu.utas.zhe4.babytracker.utils.CurrentMinute
 import au.edu.utas.zhe4.babytracker.utils.CurrentTime
 import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
+import au.edu.utas.zhe4.babytracker.utils.TimeStringToLocalDateTime
 import java.time.LocalDate
 
 
@@ -32,7 +31,20 @@ class FeedRecordViewModel(
     var feedingNote = MutableLiveData<String>("0")
 
     fun setDate(year: Int, month: Int, day: Int) {
-        val date = LocalDate.of(year, month, day).atTime(CurrentHour(), CurrentMinute())
+        val hour = TimeStringToLocalDateTime(feedingTime.value).hour
+        val minute = TimeStringToLocalDateTime(feedingTime.value).minute
+
+        val datetime = LocalDate.of(year, month, day).atTime(hour, minute)
+
+        feedingTime.value = LocalDateTimeToLocalDateTimeString(datetime)
+    }
+
+    fun setTime(hour: Int, minute: Int) {
+        val year = TimeStringToLocalDateTime(feedingTime.value).year
+        val month = TimeStringToLocalDateTime(feedingTime.value).month
+        val day = TimeStringToLocalDateTime(feedingTime.value).dayOfMonth
+
+        val date = LocalDate.of(year, month, day).atTime(hour, minute)
 
         feedingTime.value = LocalDateTimeToLocalDateTimeString(date)
     }

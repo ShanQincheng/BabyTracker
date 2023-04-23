@@ -22,6 +22,8 @@ class FeedRecordDatePickerFragment(viewModel: FeedRecordViewModel) : DialogFragm
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        viewModel.setDate(year, month, day)
+        // Keep in mind that months values start from 0, so October is actually month number 9.
+        // https://stackoverflow.com/a/19348087/12997752
+        viewModel.setDate(year, month+1, day)
     }
 }

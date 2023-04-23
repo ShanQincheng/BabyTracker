@@ -10,6 +10,23 @@ import java.util.*
 
 val dateTimeformatPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
 
+fun CurrentYear(): Int {
+    val rightNow = Calendar.getInstance()
+    return rightNow.get(Calendar.YEAR)
+}
+
+fun CurrentMonth(): Int {
+    val rightNow = Calendar.getInstance()
+    // Keep in mind that months values start from 0, so October is actually month number 9.
+    // https://stackoverflow.com/a/19348087/12997752
+    return rightNow.get(Calendar.MONTH) + 1
+}
+
+fun CurrentDay(): Int {
+    val rightNow = Calendar.getInstance()
+    return rightNow.get(Calendar.DAY_OF_MONTH)
+}
+
 fun CurrentHour(): Int {
     val rightNow = Calendar.getInstance()
     return rightNow.get(Calendar.HOUR_OF_DAY)

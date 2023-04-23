@@ -67,6 +67,9 @@ class FeedRecordActivity : AppCompatActivity() {
         }
 
         ui.btTimePickerPopUp.setOnClickListener {
+            val timePicker = FeedRecordTimePickerFragment(viewModel)
+            timePicker.show(supportFragmentManager, "timePicker")
+
             val datePicker = FeedRecordDatePickerFragment(viewModel)
             datePicker.show(supportFragmentManager, "datePicker")
         }
