@@ -3,6 +3,7 @@ package au.edu.utas.zhe4.babytracker.presentation.record.feed
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,36 +26,16 @@ class FeedRecordActivity : AppCompatActivity() {
             BabyTrackerViewModelFactory
         )[FeedRecordViewModel::class.java]
 
-        if (intent.hasExtra(FEEDING_RECORD_INDEX)) {
-            val id = intent.getIntExtra(FEEDING_RECORD_INDEX, -1)
-            viewModel.updateID(id)
-        }
-
-        if (intent.hasExtra("feedingType")) {
-            val fType = intent.getStringExtra("feedingType").toString()
-            viewModel.updateFeedingType(fType)
-        }
-        if (intent.hasExtra("feedingTime")) {
-            val fTime = intent.getStringExtra("feedingTime").toString()
-            viewModel.updateFeedingTime(fTime)
-        }
-        if (intent.hasExtra("feedingSide")) {
-            val fSide = intent.getStringExtra("feedingSide").toString()
-            viewModel.updateFeedingSide(fSide)
-        }
-        if (intent.hasExtra("feedingDuration")) {
-            val fDuration = intent.getStringExtra("feedingDuration").toString()
-            viewModel.updateFeedingDuration(fDuration)
-        }
-        if (intent.hasExtra("feedingNote")) {
-            val fNote = intent.getStringExtra("feedingNote").toString()
-            viewModel.updateFeedingNote(fNote)
-        }
+        updateViewModelByIntent(viewModel)
 
         showPage(viewModel)
 
         viewModel.feedingTime.observe(this, Observer {
             showFeedingTime(viewModel)
+        })
+
+        viewModel.feedingDuration.observe(this, Observer {
+            showFeedingDuration(viewModel)
         })
 
         ui.rgFeedType.setOnCheckedChangeListener { _, checkedId ->
@@ -83,6 +64,11 @@ class FeedRecordActivity : AppCompatActivity() {
             }
         }
 
+        ui.btDurationPickerPopUp.setOnClickListener {
+            val numberPicker = FeedRecordNumberPicker(this, viewModel)
+            numberPicker.showNumberPickerDialog()
+        }
+
         ui.tietNote.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -99,6 +85,34 @@ class FeedRecordActivity : AppCompatActivity() {
         ui.btSave.setOnClickListener{
             viewModel.saveOrUpdateToDatabase()
             finish()
+        }
+    }
+
+    private fun updateViewModelByIntent(viewModel: FeedRecordViewModel) {
+        if (intent.hasExtra(FEEDING_RECORD_INDEX)) {
+            val id = intent.getIntExtra(FEEDING_RECORD_INDEX, -1)
+            viewModel.updateID(id)
+        }
+
+        if (intent.hasExtra("feedingType")) {
+            val fType = intent.getStringExtra("feedingType").toString()
+            viewModel.updateFeedingType(fType)
+        }
+        if (intent.hasExtra("feedingTime")) {
+            val fTime = intent.getStringExtra("feedingTime").toString()
+            viewModel.updateFeedingTime(fTime)
+        }
+        if (intent.hasExtra("feedingSide")) {
+            val fSide = intent.getStringExtra("feedingSide").toString()
+            viewModel.updateFeedingSide(fSide)
+        }
+        if (intent.hasExtra("feedingDuration")) {
+            val fDuration = intent.getStringExtra("feedingDuration").toString()
+            viewModel.updateFeedingDuration(fDuration)
+        }
+        if (intent.hasExtra("feedingNote")) {
+            val fNote = intent.getStringExtra("feedingNote").toString()
+            viewModel.updateFeedingNote(fNote)
         }
     }
 
