@@ -60,4 +60,17 @@ class FirebaseSleepDataSource : SleepDataSource {
                 Log.e(FIREBASE_TAG, "Error updating sleep record", it)
             }
     }
+
+    override fun delete(id: String) {
+        sleepCollection.document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d(
+                    FIREBASE_TAG,
+                    "Successfully delete sleep record $it")
+            }
+            .addOnFailureListener {
+                Log.e(FIREBASE_TAG, "Error delete sleep record", it)
+            }
+    }
 }

@@ -1,9 +1,14 @@
 package au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnLongClickListener
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.RecyclerviewNappyRecordBinding
@@ -12,17 +17,19 @@ import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.domain.Sleep
 import au.edu.utas.zhe4.babytracker.presentation.record.nappy.NappyRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.record.sleep.SleepRecordActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackAdapter
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class SleepStartTrackAdapter(
     private val records: MutableList<Sleep> = mutableListOf(),
     private val context: Context,
+    private val viewModel: SleepStartTrackViewModel,
 ) :
     RecyclerView.Adapter<SleepStartTrackAdapter.ViewHolder>()
 {
 
-    class ViewHolder(val ui: RecyclerviewSleepRecordBinding) : RecyclerView.ViewHolder(ui.root) {
+    class ViewHolder(val ui: RecyclerviewSleepRecordBinding) : RecyclerView.ViewHolder(ui.root){
     }
 
     // Inflates a new row, and wraps it in a new ViewHolder( FeedingRecordHolder )
@@ -52,6 +59,14 @@ class SleepStartTrackAdapter(
 
             context.startActivity(i)
         }
+
+        holder.itemView.setOnLongClickListener{
+            val deleteDialog = DeleteRecordFragment(record.id!!, viewModel::deleteSleepRecord)
+            deleteDialog.show((context as SleepStartTrackActivity).supportFragmentManager, "")
+
+            true
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -59,9 +74,12 @@ class SleepStartTrackAdapter(
     }
 
     fun update(sleepRecords: MutableList<Sleep>) {
+        val beforeSize = records.size
+
         records.clear()
         records.addAll(sleepRecords)
 
-        notifyItemRangeChanged(0, records.size)
+        notifyItemRangeRemoved(0, beforeSize)
+        notifyItemRangeInserted(0, records.size)
     }
 }

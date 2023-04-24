@@ -9,4 +9,6 @@ interface SleepDataSource {
     fun readAll(completion: (MutableList<Sleep>) -> Unit)
 
     fun modify(sleep : Sleep)
+
+    fun delete(id : String)
 }

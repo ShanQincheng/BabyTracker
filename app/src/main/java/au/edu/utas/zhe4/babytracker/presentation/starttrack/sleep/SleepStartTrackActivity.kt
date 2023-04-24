@@ -2,6 +2,10 @@ package au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.View.OnLongClickListener
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemLongClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +14,7 @@ import au.edu.utas.zhe4.babytracker.databinding.ActivitySleepStartTrackBinding
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
 import au.edu.utas.zhe4.babytracker.presentation.record.nappy.NappyRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.record.sleep.SleepRecordActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackAdapter
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackViewModel
 
@@ -23,13 +28,13 @@ class SleepStartTrackActivity : AppCompatActivity() {
         ui = ActivitySleepStartTrackBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        val adapter = SleepStartTrackAdapter(context = this)
-        val layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(
             this,
             BabyTrackerViewModelFactory
         )[SleepStartTrackViewModel::class.java]
 
+        val adapter = SleepStartTrackAdapter(context = this, viewModel = viewModel)
+        val layoutManager = LinearLayoutManager(this)
         // tell RecyclerView how to display the items in vertical way
         ui.rvThisWeek.layoutManager = layoutManager
         // link the RecyclerView to the adapter
@@ -51,4 +56,5 @@ class SleepStartTrackActivity : AppCompatActivity() {
 
         viewModel.readAllSleepRecords()
     }
+
 }

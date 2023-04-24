@@ -42,4 +42,18 @@ class SleepStartTrackViewModel(
 
         useCases.readAllSleeps(completion)
     }
+
+    fun deleteSleepRecord(id : String) {
+        useCases.deleteSleep(id)
+
+        val slepRecord = mutableListOf<Sleep>()
+        for (record in sleepRecords.value!!) {
+            if (record.id == id) {
+                continue
+            }
+            slepRecord.add(record)
+        }
+
+        sleepRecords.value = slepRecord
+    }
 }

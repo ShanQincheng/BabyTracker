@@ -3,6 +3,7 @@ package au.edu.utas.zhe4.babytracker.framework
 import au.edu.utas.zhe4.babytracker.usecases.AddFeed
 import au.edu.utas.zhe4.babytracker.usecases.AddNappy
 import au.edu.utas.zhe4.babytracker.usecases.AddSleep
+import au.edu.utas.zhe4.babytracker.usecases.DeleteSleep
 import au.edu.utas.zhe4.babytracker.usecases.ModifyFeed
 import au.edu.utas.zhe4.babytracker.usecases.ModifyNappy
 import au.edu.utas.zhe4.babytracker.usecases.ModifySleep
@@ -22,4 +23,5 @@ data class UseCases (
     val addSleep: AddSleep,
     val modifySleep: ModifySleep,
     val readAllSleeps: ReadAllSleeps,
+    val deleteSleep: DeleteSleep,
 )

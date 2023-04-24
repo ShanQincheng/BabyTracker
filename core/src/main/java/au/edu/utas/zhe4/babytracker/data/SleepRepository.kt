@@ -10,4 +10,6 @@ class SleepRepository(private val dataSource: SleepDataSource) {
 
     fun modify(sleep: Sleep) = dataSource.modify(sleep)
 
+    fun delete(id: String) = dataSource.delete(id)
+
 }

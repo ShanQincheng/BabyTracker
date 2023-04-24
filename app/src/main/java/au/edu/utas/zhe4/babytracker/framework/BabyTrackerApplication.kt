@@ -7,6 +7,7 @@ import au.edu.utas.zhe4.babytracker.data.SleepRepository
 import au.edu.utas.zhe4.babytracker.usecases.AddFeed
 import au.edu.utas.zhe4.babytracker.usecases.AddNappy
 import au.edu.utas.zhe4.babytracker.usecases.AddSleep
+import au.edu.utas.zhe4.babytracker.usecases.DeleteSleep
 import au.edu.utas.zhe4.babytracker.usecases.ModifyFeed
 import au.edu.utas.zhe4.babytracker.usecases.ModifyNappy
 import au.edu.utas.zhe4.babytracker.usecases.ModifySleep
@@ -36,6 +37,7 @@ class BabyTrackerApplication: Application() {
                 AddSleep(sleepRepository),
                 ModifySleep(sleepRepository),
                 ReadAllSleeps(sleepRepository),
+                DeleteSleep(sleepRepository),
             )
         )
     }

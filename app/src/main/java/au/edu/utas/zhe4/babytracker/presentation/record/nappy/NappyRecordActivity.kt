@@ -241,8 +241,7 @@ class NappyRecordActivity() : AppCompatActivity() {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
 
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults){
+                override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     viewModel.updateNappyImage(output.savedUri!!)
