@@ -8,9 +8,10 @@ import androidx.fragment.app.DialogFragment
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import java.util.Calendar
 
-class DatePickerFragment(viewModel: BabyTrackerViewModel) : DialogFragment(), DatePickerDialog.OnDateSetListener {
-    private var viewModel: BabyTrackerViewModel = viewModel
-
+class DatePickerFragment(setDate: (year: Int, month: Int, day: Int) -> Unit) :
+    DialogFragment(), DatePickerDialog.OnDateSetListener
+{
+    private val setDate = setDate
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current date as the default date in the picker
         val c = Calendar.getInstance()
@@ -25,6 +26,6 @@ class DatePickerFragment(viewModel: BabyTrackerViewModel) : DialogFragment(), Da
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         // Keep in mind that months values start from 0, so October is actually month number 9.
         // https://stackoverflow.com/a/19348087/12997752
-        viewModel.setDate(year, month+1, day)
+        setDate(year, month+1, day)
     }
 }

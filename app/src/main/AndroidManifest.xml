@@ -36,6 +36,8 @@
         <activity android:name=".presentation.record.feed.FeedRecordActivity"></activity>
         <activity android:name=".presentation.starttrack.nappy.NappyStartTrackActivity"></activity>
         <activity android:name=".presentation.record.nappy.NappyRecordActivity"></activity>
+        <activity android:name=".presentation.starttrack.sleep.SleepStartTrackActivity"></activity>
+        <activity android:name=".presentation.record.sleep.SleepRecordActivity"></activity>
     </application>
 
 </manifest>

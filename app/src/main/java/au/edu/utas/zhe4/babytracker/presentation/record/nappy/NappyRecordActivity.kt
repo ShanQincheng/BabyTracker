@@ -1,17 +1,12 @@
 package au.edu.utas.zhe4.babytracker.presentation.record.nappy
 
 import android.Manifest
-import android.content.ContentUris
 import android.content.ContentValues
-import android.content.Context
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -81,10 +76,10 @@ class NappyRecordActivity() : AppCompatActivity() {
         }
 
         ui.btTimePickerPopUp.setOnClickListener {
-            val timePicker = TimePickerFragment(viewModel)
+            val timePicker = TimePickerFragment(viewModel::setTime)
             timePicker.show(supportFragmentManager, "timePicker")
 
-            val datePicker = DatePickerFragment(viewModel)
+            val datePicker = DatePickerFragment(viewModel::setDate)
             datePicker.show(supportFragmentManager, "datePicker")
         }
 

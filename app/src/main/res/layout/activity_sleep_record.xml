@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_time_picker_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
+        android:text="Time"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_time_picker_current_time"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/div_start_end_time"/>
+
+    <TextView
+        android:id="@+id/tv_time_picker_current_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="09/04/2023 03:32"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_time_picker_heading"
+        app:layout_constraintEnd_toStartOf="@id/bt_time_picker_pop_up"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/div_start_end_time"/>
+
+    <Button
+        android:id="@+id/bt_time_picker_pop_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Time"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/tv_time_picker_current_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/div_start_end_time"/>
+
+    <View
+        android:id="@+id/div_start_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_time_picker_pop_up"
+        app:layout_constraintBottom_toTopOf="@id/tv_start_end_time_heading"/>
+
+    <TextView
+        android:id="@+id/tv_start_end_time_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start / End"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_start_time_picker"
+        app:layout_constraintTop_toTopOf="@id/div_start_end_time"
+        app:layout_constraintBottom_toTopOf="@id/div_note"/>
+
+    <Button
+        android:id="@+id/bt_start_time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13:32"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_start_end_time_heading"
+        app:layout_constraintEnd_toStartOf="@id/bt_end_time_picker"
+        app:layout_constraintTop_toBottomOf="@id/div_start_end_time"
+        app:layout_constraintBottom_toTopOf="@id/div_note" />
+
+    <Button
+        android:id="@+id/bt_end_time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:00"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/bt_start_time_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_start_end_time"
+        app:layout_constraintBottom_toTopOf="@id/div_note" />
+
+
+    <View
+        android:id="@+id/div_note"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_end_time_picker"
+        app:layout_constraintBottom_toTopOf="@id/til_note" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_note"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Note" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/div_save"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_note"
+        />
+
+    <Button
+        android:id="@+id/bt_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_save"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

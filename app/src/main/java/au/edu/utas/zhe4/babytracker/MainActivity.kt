@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import au.edu.utas.zhe4.babytracker.databinding.ActivityMainBinding
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import au.edu.utas.zhe4.babytracker.entities.Feed
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.feed.FeedStartTrackActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         ui.cvNappy.setOnClickListener {
             val i = Intent(ui.root.context, NappyStartTrackActivity::class.java)
+            startActivity(i)
+        }
+
+        ui.cvSleep.setOnClickListener{
+            val i = Intent(ui.root.context, SleepStartTrackActivity::class.java)
             startActivity(i)
         }
 

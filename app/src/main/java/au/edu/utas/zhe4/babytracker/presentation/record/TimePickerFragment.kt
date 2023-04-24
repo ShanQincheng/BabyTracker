@@ -9,8 +9,8 @@ import androidx.fragment.app.DialogFragment
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import java.util.Calendar
 
-class TimePickerFragment(viewModel: BabyTrackerViewModel) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
-    private var viewModel: BabyTrackerViewModel = viewModel
+class TimePickerFragment(setTime: (hour: Int, minute: Int) -> Unit) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+    private val setTime = setTime
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current time as the default values for the picker
@@ -24,6 +24,6 @@ class TimePickerFragment(viewModel: BabyTrackerViewModel) : DialogFragment(), Ti
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        viewModel.setTime(hourOfDay, minute)
+        setTime(hourOfDay, minute)
     }
 }

@@ -17,5 +17,8 @@ abstract class FirebaseDatabase {
 
         fun getNappyCollection() : CollectionReference =
             getInstance().collection("nappies")
+
+        fun getSleepCollection() : CollectionReference =
+            getInstance().collection("sleeps")
     }
 }
