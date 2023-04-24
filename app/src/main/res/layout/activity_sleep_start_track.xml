@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
         android:textSize="14sp"
-        android:text="This Week"
+        android:text="History"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_screenTitle"
         />

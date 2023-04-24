@@ -22,16 +22,28 @@ class MainActivity : AppCompatActivity() {
         ui = ActivityMainBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
+        ui.btFeed.setOnClickListener {
+            val i = Intent(ui.root.context, FeedStartTrackActivity::class.java)
+            startActivity(i)
+        }
         ui.cvFeed.setOnClickListener {
             val i = Intent(ui.root.context, FeedStartTrackActivity::class.java)
             startActivity(i)
         }
 
+        ui.btNappy.setOnClickListener {
+            val i = Intent(ui.root.context, NappyStartTrackActivity::class.java)
+            startActivity(i)
+        }
         ui.cvNappy.setOnClickListener {
             val i = Intent(ui.root.context, NappyStartTrackActivity::class.java)
             startActivity(i)
         }
 
+        ui.btSleep.setOnClickListener {
+            val i = Intent(ui.root.context, SleepStartTrackActivity::class.java)
+            startActivity(i)
+        }
         ui.cvSleep.setOnClickListener{
             val i = Intent(ui.root.context, SleepStartTrackActivity::class.java)
             startActivity(i)
