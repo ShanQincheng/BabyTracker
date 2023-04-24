@@ -1,15 +1,15 @@
 package au.edu.utas.zhe4.babytracker
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import au.edu.utas.zhe4.babytracker.databinding.ActivityMainBinding
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.feed.FeedStartTrackActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {

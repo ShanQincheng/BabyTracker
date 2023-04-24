@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import java.util.Calendar
 
 class DatePickerFragment(setDate: (year: Int, month: Int, day: Int) -> Unit) :

@@ -12,7 +12,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import au.edu.utas.zhe4.babytracker.databinding.FragmentNappyRecordCameraBinding
 import java.util.concurrent.ExecutorService
 

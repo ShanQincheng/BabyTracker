@@ -6,17 +6,10 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.databinding.ActivitySleepRecordBinding
-import au.edu.utas.zhe4.babytracker.domain.FeedingSide
-import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
 import au.edu.utas.zhe4.babytracker.presentation.record.DatePickerFragment
 import au.edu.utas.zhe4.babytracker.presentation.record.TimePickerFragment
-import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordDatePickerFragment
-import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordNumberPickerFragment
-import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordTimePickerFragment
-import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordViewModel
 
 class SleepRecordActivity : AppCompatActivity() {
     private lateinit var ui : ActivitySleepRecordBinding

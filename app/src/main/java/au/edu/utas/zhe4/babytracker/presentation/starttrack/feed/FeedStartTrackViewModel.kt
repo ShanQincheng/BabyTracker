@@ -3,7 +3,6 @@ package au.edu.utas.zhe4.babytracker.presentation.starttrack.feed
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import au.edu.utas.zhe4.babytracker.domain.Feed
-import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases
 

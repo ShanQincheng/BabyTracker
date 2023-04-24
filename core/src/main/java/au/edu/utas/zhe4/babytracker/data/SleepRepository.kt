@@ -1,6 +1,5 @@
 package au.edu.utas.zhe4.babytracker.data
 
-import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.domain.Sleep
 
 class SleepRepository(private val dataSource: SleepDataSource) {

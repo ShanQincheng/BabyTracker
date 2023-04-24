@@ -10,6 +10,8 @@ import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.domain.FeedingSide
 import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
+import au.edu.utas.zhe4.babytracker.presentation.record.DatePickerFragment
+import au.edu.utas.zhe4.babytracker.presentation.record.TimePickerFragment
 
 class FeedRecordActivity : AppCompatActivity() {
     private lateinit var ui : ActivityFeedBinding
@@ -46,10 +48,10 @@ class FeedRecordActivity : AppCompatActivity() {
         }
 
         ui.btTimePickerPopUp.setOnClickListener {
-            val timePicker = FeedRecordTimePickerFragment(viewModel)
+            val timePicker = TimePickerFragment(viewModel::setTime)
             timePicker.show(supportFragmentManager, "timePicker")
 
-            val datePicker = FeedRecordDatePickerFragment(viewModel)
+            val datePicker = DatePickerFragment(viewModel::setDate)
             datePicker.show(supportFragmentManager, "datePicker")
         }
 

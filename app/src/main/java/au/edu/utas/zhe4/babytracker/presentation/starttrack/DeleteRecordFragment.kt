@@ -4,10 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.fragment.app.DialogFragment
-import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 
 class DeleteRecordFragment(id: String, delete: (id: String) -> Unit) : DialogFragment() {
     private val id = id

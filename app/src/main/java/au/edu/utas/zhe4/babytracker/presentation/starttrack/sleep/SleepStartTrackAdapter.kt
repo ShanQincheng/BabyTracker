@@ -1,25 +1,14 @@
 package au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.OnLongClickListener
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
-import au.edu.utas.zhe4.babytracker.databinding.RecyclerviewNappyRecordBinding
 import au.edu.utas.zhe4.babytracker.databinding.RecyclerviewSleepRecordBinding
-import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.domain.Sleep
-import au.edu.utas.zhe4.babytracker.presentation.record.nappy.NappyRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.record.sleep.SleepRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
-import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackAdapter
-import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class SleepStartTrackAdapter(
     private val records: MutableList<Sleep> = mutableListOf(),
@@ -50,7 +39,6 @@ class SleepStartTrackAdapter(
 
         holder.ui.root.setOnClickListener {
             val i = Intent(holder.ui.root.context, SleepRecordActivity::class.java)
-            i.putExtra(FEEDING_RECORD_INDEX, position)
             i.putExtra("id", record.id)
             i.putExtra("sleepTime", record.time)
             i.putExtra("sleepStartTime", record.startTime)

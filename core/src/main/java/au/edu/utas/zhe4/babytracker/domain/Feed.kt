@@ -1,12 +1,10 @@
 package au.edu.utas.zhe4.babytracker.domain
 
+//import com.google.firebase.firestore.Exclude
 import au.edu.utas.zhe4.babytracker.utils.CurrentTime
 import au.edu.utas.zhe4.babytracker.utils.DurationStringToLong
-import au.edu.utas.zhe4.babytracker.utils.LocalDateTimeToLong
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.utils.TimeStringToLong
-//import com.google.firebase.firestore.Exclude
-import java.time.LocalDateTime
 
 enum class FeedingType {
     BREASTFEEDING, BOTTLE

@@ -30,8 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FeedStartTrack"></activity>
-        <activity android:name=".Feed"></activity>
         <activity android:name=".presentation.starttrack.feed.FeedStartTrackActivity"></activity>
         <activity android:name=".presentation.record.feed.FeedRecordActivity"></activity>
         <activity android:name=".presentation.starttrack.nappy.NappyStartTrackActivity"></activity>

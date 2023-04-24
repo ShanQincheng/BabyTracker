@@ -10,12 +10,8 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import androidx.lifecycle.MutableLiveData
-import au.edu.utas.zhe4.babytracker.domain.Feed
-import au.edu.utas.zhe4.babytracker.domain.FeedingSide
-import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.domain.NappyCons
-import au.edu.utas.zhe4.babytracker.domain.createFeed
 import au.edu.utas.zhe4.babytracker.domain.createNappy
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases

@@ -5,13 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.RecyclerviewNappyRecordBinding
 import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.presentation.record.nappy.NappyRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
-import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
-import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackViewModel
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class NappyStartTrackAdapter(
@@ -43,7 +40,6 @@ class NappyStartTrackAdapter(
 
         holder.ui.root.setOnClickListener {
             val i = Intent(holder.ui.root.context, NappyRecordActivity::class.java)
-            i.putExtra(FEEDING_RECORD_INDEX, position)
             i.putExtra("id", record.id)
             i.putExtra("nappyTime", holder.ui.tvNappyChangeTime.text)
             i.putExtra("nappyCons", holder.ui.tvNappyCons.text)

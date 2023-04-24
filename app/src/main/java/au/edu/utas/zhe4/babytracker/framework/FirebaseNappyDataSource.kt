@@ -1,16 +1,11 @@
 package au.edu.utas.zhe4.babytracker.framework
 
-import android.net.Uri
 import android.util.Log
-import au.edu.utas.zhe4.babytracker.FIREBASE_TAG
+import au.edu.utas.zhe4.babytracker.domain.FIREBASE_TAG
 import au.edu.utas.zhe4.babytracker.data.NappyDataSource
 import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.framework.db.FirebaseDatabase
-import au.edu.utas.zhe4.babytracker.framework.db.FirebaseDatabase.Companion.getStorageReference
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.storage.StorageReference
-import java.io.File
-import java.io.FileInputStream
 
 
 class FirebaseNappyDataSource : NappyDataSource {

@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.FeedRecordBinding
 import au.edu.utas.zhe4.babytracker.domain.Feed
-import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordActivity
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
-import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
+import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class FeedStartTrackAdapter(
     private val records: MutableList<Feed> = mutableListOf(),
@@ -48,7 +46,6 @@ class FeedStartTrackAdapter(
 
         holder.ui.root.setOnClickListener {
             val i = Intent(holder.ui.root.context, FeedRecordActivity::class.java)
-            i.putExtra(FEEDING_RECORD_INDEX, position)
             i.putExtra("id", record.id)
             i.putExtra("feedingType", holder.ui.tvFeedingType.text)
             i.putExtra("feedingTime", holder.ui.tvFeedingTime.text)

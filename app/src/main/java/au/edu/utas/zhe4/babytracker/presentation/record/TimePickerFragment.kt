@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import java.util.Calendar
 
 class TimePickerFragment(setTime: (hour: Int, minute: Int) -> Unit) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
