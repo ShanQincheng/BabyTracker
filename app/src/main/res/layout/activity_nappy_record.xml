@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -45,10 +46,11 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_time_picker_pop_up" />
+        app:layout_constraintTop_toBottomOf="@id/bt_time_picker_pop_up"
+        app:layout_constraintBottom_toTopOf="@id/tv_nappy_cons"/>
 
     <TextView
-        android:id="@+id/tv_feed_side_heading"
+        android:id="@+id/tv_nappy_cons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
@@ -57,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/rg_nappy_cons"
         app:layout_constraintTop_toBottomOf="@id/div_feed_side"
-        app:layout_constraintBottom_toTopOf="@id/div_note"/>
+        app:layout_constraintBottom_toTopOf="@id/div_image"/>
 
     <RadioGroup
         android:id="@+id/rg_nappy_cons"
@@ -65,10 +67,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/tv_feed_side_heading"
+        app:layout_constraintStart_toEndOf="@id/tv_nappy_cons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/div_feed_side"
-        app:layout_constraintBottom_toTopOf="@id/div_note"
+        app:layout_constraintBottom_toTopOf="@id/div_image"
         >
 
         <RadioButton
@@ -86,13 +88,65 @@
     </RadioGroup>
 
     <View
+        android:id="@+id/div_image"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rg_nappy_cons"
+        app:layout_constraintBottom_toTopOf="@id/bt_camera_pop_up"/>
+
+    <TextView
+        android:id="@+id/tv_image_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_camera_pop_up"
+        app:layout_constraintTop_toBottomOf="@id/div_image"
+        app:layout_constraintBottom_toTopOf="@id/div_photo_preview"/>
+
+    <Button
+        android:id="@+id/bt_camera_pop_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Photo"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_image_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_image"
+        app:layout_constraintBottom_toTopOf="@id/div_photo_preview"/>
+
+    <View
+        android:id="@+id/div_photo_preview"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_image_title"
+        app:layout_constraintBottom_toTopOf="@id/iv_photo" />
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_photo_preview"
+        app:layout_constraintBottom_toTopOf="@id/div_note"/>
+
+    <View
         android:id="@+id/div_note"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rg_nappy_cons"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_photo"
+        app:layout_constraintBottom_toTopOf="@id/til_note" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_note"

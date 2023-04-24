@@ -43,6 +43,7 @@ class NappyStartTrackAdapter(
             i.putExtra("id", record.id)
             i.putExtra("nappyTime", holder.ui.tvNappyChangeTime.text)
             i.putExtra("nappyCons", holder.ui.tvNappyCons.text)
+            i.putExtra("nappyImg", record.image)
             i.putExtra("nappyNote", holder.ui.tvNappyNote.text)
 
             context.startActivity(i)

@@ -13,6 +13,7 @@ class Nappy() {
     var time : Long? = System.currentTimeMillis()
     var cons : NappyCons? = NappyCons.WET
     var image: String? = ""
+    var imageName: String? = ""
     var note : String? = ""
 }
 
@@ -21,6 +22,7 @@ fun createNappy(
     time : String? = LongToLocalDateTimeString(CurrentTime()),
     cons : String? = NappyCons.WET.toString(),
     image: String? = "",
+    imageName: String? = "",
     note : String? = "",
 ) : Nappy
 {
@@ -30,6 +32,7 @@ fun createNappy(
     nappy.time = TimeStringToLong(time!!)
     nappy.cons = if (cons==NappyCons.WET.toString()) NappyCons.WET else NappyCons.WET_DIRTY
     nappy.image = image
+    nappy.imageName = imageName
     nappy.note = note
 
     return nappy
