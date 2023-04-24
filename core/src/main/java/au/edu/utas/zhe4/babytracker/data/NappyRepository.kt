@@ -9,4 +9,5 @@ class NappyRepository(private val dataSource: NappyDataSource) {
 
     fun modify(nappy: Nappy) = dataSource.modify(nappy)
 
+    fun delete(id: String) = dataSource.delete(id)
 }

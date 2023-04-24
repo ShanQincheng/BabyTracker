@@ -3,6 +3,7 @@ package au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import au.edu.utas.zhe4.babytracker.domain.Nappy
+import au.edu.utas.zhe4.babytracker.domain.Sleep
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases
 
@@ -41,5 +42,19 @@ class NappyStartTrackViewModel(
         }
 
         useCases.readAllNappies(completion)
+    }
+
+    fun deleteNappyRecord(id : String) {
+        useCases.deleteSleep(id)
+
+        val npyRecord = mutableListOf<Nappy>()
+        for (record in nappyRecords.value!!) {
+            if (record.id == id) {
+                continue
+            }
+            npyRecord.add(record)
+        }
+
+        nappyRecords.value = npyRecord
     }
 }

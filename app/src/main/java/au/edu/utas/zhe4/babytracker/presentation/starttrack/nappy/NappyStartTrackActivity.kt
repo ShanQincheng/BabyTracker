@@ -19,13 +19,13 @@ class NappyStartTrackActivity : AppCompatActivity() {
         ui = ActivityNappyStartTrackBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        val adapter = NappyStartTrackAdapter(context = this)
-        val layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(
             this,
             BabyTrackerViewModelFactory
         )[NappyStartTrackViewModel::class.java]
 
+        val adapter = NappyStartTrackAdapter(context = this, viewModel = viewModel)
+        val layoutManager = LinearLayoutManager(this)
         // tell RecyclerView how to display the items in vertical way
         ui.rvThisWeek.layoutManager = layoutManager
         // link the RecyclerView to the adapter

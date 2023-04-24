@@ -8,4 +8,6 @@ interface NappyDataSource {
     fun readAll(completion: (MutableList<Nappy>) -> Unit)
 
     fun modify(nappy : Nappy)
+
+    fun delete(id : String)
 }

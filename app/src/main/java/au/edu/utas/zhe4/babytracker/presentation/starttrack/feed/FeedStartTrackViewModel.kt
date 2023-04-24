@@ -3,6 +3,7 @@ package au.edu.utas.zhe4.babytracker.presentation.starttrack.feed
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import au.edu.utas.zhe4.babytracker.domain.Feed
+import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModel
 import au.edu.utas.zhe4.babytracker.framework.UseCases
 
@@ -42,5 +43,19 @@ class FeedStartTrackViewModel(
         }
 
         useCases.readAllFeeds(completion)
+    }
+
+    fun deleteFeedRecord(id : String) {
+        useCases.deleteSleep(id)
+
+        val fRecord = mutableListOf<Feed>()
+        for (record in feedingRecords.value!!) {
+            if (record.id == id) {
+                continue
+            }
+            fRecord.add(record)
+        }
+
+        feedingRecords.value = fRecord
     }
 }

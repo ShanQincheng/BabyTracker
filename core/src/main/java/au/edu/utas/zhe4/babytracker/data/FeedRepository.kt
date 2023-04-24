@@ -8,4 +8,6 @@ class FeedRepository(private val dataSource: FeedDataSource) {
     fun readAll(completion: (MutableList<Feed>) -> Unit) = dataSource.readAll(completion)
 
     fun modify(feed: Feed) = dataSource.modify(feed)
+
+    fun delete(id: String) = dataSource.delete(id)
 }

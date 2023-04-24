@@ -19,13 +19,13 @@ class FeedStartTrackActivity : AppCompatActivity() {
         ui = ActivityFeedStartTrackBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        val adapter = FeedStartTrackAdapter(context = this)
-        val layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(
             this,
             BabyTrackerViewModelFactory
         )[FeedStartTrackViewModel::class.java]
 
+        val adapter = FeedStartTrackAdapter(context = this, viewModel = viewModel)
+        val layoutManager = LinearLayoutManager(this)
         // tell RecyclerView how to display the items in vertical way
         ui.rvThisWeek.layoutManager = layoutManager
         // link the RecyclerView to the adapter

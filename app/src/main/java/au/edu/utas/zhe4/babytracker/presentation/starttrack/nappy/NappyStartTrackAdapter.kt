@@ -9,11 +9,15 @@ import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.RecyclerviewNappyRecordBinding
 import au.edu.utas.zhe4.babytracker.domain.Nappy
 import au.edu.utas.zhe4.babytracker.presentation.record.nappy.NappyRecordActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackViewModel
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 
 class NappyStartTrackAdapter(
     private val records: MutableList<Nappy> = mutableListOf(),
     private val context: Context,
+    private val viewModel: NappyStartTrackViewModel,
 ) :
     RecyclerView.Adapter<NappyStartTrackAdapter.ViewHolder>()
 {
@@ -48,6 +52,13 @@ class NappyStartTrackAdapter(
 
             context.startActivity(i)
         }
+
+        holder.itemView.setOnLongClickListener{
+            val deleteDialog = DeleteRecordFragment(record.id!!, viewModel::deleteNappyRecord)
+            deleteDialog.show((context as NappyStartTrackActivity).supportFragmentManager, "")
+
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -55,9 +66,12 @@ class NappyStartTrackAdapter(
     }
 
     fun update(nappyRecords: MutableList<Nappy>) {
+        val beforeSize = records.size
+
         records.clear()
         records.addAll(nappyRecords)
 
-        notifyItemRangeChanged(0, records.size)
+        notifyItemRangeRemoved(0, beforeSize)
+        notifyItemRangeInserted(0, records.size)
     }
 }

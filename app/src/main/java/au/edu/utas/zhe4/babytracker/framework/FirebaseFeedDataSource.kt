@@ -57,4 +57,17 @@ class FirebaseFeedDataSource : FeedDataSource {
                 Log.e(FIREBASE_TAG, "Error updating feeding record", it)
             }
     }
+
+    override fun delete(id: String) {
+        feedingCollection.document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d(
+                    FIREBASE_TAG,
+                    "Successfully delete feeding record $it")
+            }
+            .addOnFailureListener {
+                Log.e(FIREBASE_TAG, "Error delete feeding record", it)
+            }
+    }
 }

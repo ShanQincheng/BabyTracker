@@ -11,10 +11,13 @@ import au.edu.utas.zhe4.babytracker.databinding.FeedRecordBinding
 import au.edu.utas.zhe4.babytracker.domain.Feed
 import au.edu.utas.zhe4.babytracker.utils.LongToLocalDateTimeString
 import au.edu.utas.zhe4.babytracker.presentation.record.feed.FeedRecordActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.DeleteRecordFragment
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.sleep.SleepStartTrackActivity
 
 class FeedStartTrackAdapter(
     private val records: MutableList<Feed> = mutableListOf(),
     private val context: Context,
+    private val viewModel: FeedStartTrackViewModel,
 ) :
     RecyclerView.Adapter<FeedStartTrackAdapter.ViewHolder>()
 {
@@ -55,6 +58,13 @@ class FeedStartTrackAdapter(
 
             context.startActivity(i)
         }
+
+        holder.itemView.setOnLongClickListener{
+            val deleteDialog = DeleteRecordFragment(record.id!!, viewModel::deleteFeedRecord)
+            deleteDialog.show((context as FeedStartTrackActivity).supportFragmentManager, "")
+
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -62,9 +72,12 @@ class FeedStartTrackAdapter(
     }
 
     fun update(feedingRecords: MutableList<Feed>) {
+        val beforeSize = records.size
+
         records.clear()
         records.addAll(feedingRecords)
 
-        notifyItemRangeChanged(0, records.size)
+        notifyItemRangeRemoved(0, beforeSize)
+        notifyItemRangeInserted(0, records.size)
     }
 }

@@ -64,4 +64,17 @@ class FirebaseNappyDataSource : NappyDataSource {
                 Log.e(FIREBASE_TAG, "Error updating nappy record", it)
             }
     }
+
+    override fun delete(id: String) {
+        nappyCollection.document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d(
+                    FIREBASE_TAG,
+                    "Successfully delete nappy record $it")
+            }
+            .addOnFailureListener {
+                Log.e(FIREBASE_TAG, "Error delete nappy record", it)
+            }
+    }
 }

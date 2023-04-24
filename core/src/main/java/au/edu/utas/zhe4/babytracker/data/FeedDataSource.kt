@@ -8,4 +8,6 @@ interface FeedDataSource {
     fun readAll(completion: (MutableList<Feed>) -> Unit)
 
     fun modify(feed : Feed)
+
+    fun delete(id : String)
 }
