@@ -5,7 +5,7 @@ import android.content.Context
 import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 
-class FeedRecordNumberPicker(ctx: Context, viewModel: FeedRecordViewModel)  : DialogFragment() {
+class FeedRecordNumberPickerFragment(ctx: Context, viewModel: FeedRecordViewModel)  : DialogFragment() {
     private val context: Context = ctx
     private val viewModel = viewModel
 

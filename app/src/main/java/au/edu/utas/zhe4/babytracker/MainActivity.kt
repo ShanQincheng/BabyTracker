@@ -10,6 +10,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import au.edu.utas.zhe4.babytracker.entities.Feed
 import au.edu.utas.zhe4.babytracker.presentation.starttrack.feed.FeedStartTrackActivity
+import au.edu.utas.zhe4.babytracker.presentation.starttrack.nappy.NappyStartTrackActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         ui.cvFeed.setOnClickListener {
             val i = Intent(ui.root.context, FeedStartTrackActivity::class.java)
+            startActivity(i)
+        }
+
+        ui.cvNappy.setOnClickListener {
+            val i = Intent(ui.root.context, NappyStartTrackActivity::class.java)
             startActivity(i)
         }
 

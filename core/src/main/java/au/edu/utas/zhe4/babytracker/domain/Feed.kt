@@ -47,23 +47,3 @@ fun createFeed(
 
     return feed
 }
-
-fun createFeed2(
-    id : String? = null,
-    type : FeedingType? = FeedingType.BREASTFEEDING,
-    time : LocalDateTime? = LocalDateTime.now(),
-    side : FeedingSide? = FeedingSide.LEFT,
-    duration : Long? = 0,
-    note : String? = "",
-) : Feed
-{
-    val feed = Feed()
-    feed.id = id
-    feed.type = type
-    feed.time = LocalDateTimeToLong(time)
-    feed.side = side
-    feed.duration = duration
-    feed.note = note
-
-    return feed
-}

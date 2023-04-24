@@ -31,7 +31,7 @@ class FeedRecordViewModel(
     val feedingDuration = MutableLiveData<String>("0")
     var feedingNote = MutableLiveData<String>("")
 
-    fun setDate(year: Int, month: Int, day: Int) {
+    override fun setDate(year: Int, month: Int, day: Int) {
         val hour = TimeStringToLocalDateTime(feedingTime.value).hour
         val minute = TimeStringToLocalDateTime(feedingTime.value).minute
 
@@ -40,7 +40,7 @@ class FeedRecordViewModel(
         feedingTime.value = LocalDateTimeToLocalDateTimeString(datetime)
     }
 
-    fun setTime(hour: Int, minute: Int) {
+    override fun setTime(hour: Int, minute: Int) {
         val year = TimeStringToLocalDateTime(feedingTime.value).year
         val month = TimeStringToLocalDateTime(feedingTime.value).month
         val day = TimeStringToLocalDateTime(feedingTime.value).dayOfMonth

@@ -3,16 +3,13 @@ package au.edu.utas.zhe4.babytracker.presentation.record.feed
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import au.edu.utas.zhe4.babytracker.FEEDING_RECORD_INDEX
 import au.edu.utas.zhe4.babytracker.databinding.ActivityFeedBinding
 import au.edu.utas.zhe4.babytracker.domain.FeedingSide
 import au.edu.utas.zhe4.babytracker.domain.FeedingType
 import au.edu.utas.zhe4.babytracker.framework.BabyTrackerViewModelFactory
-import au.edu.utas.zhe4.babytracker.utils.randomUUID
 
 class FeedRecordActivity : AppCompatActivity() {
     private lateinit var ui : ActivityFeedBinding
@@ -66,7 +63,7 @@ class FeedRecordActivity : AppCompatActivity() {
         }
 
         ui.btDurationPickerPopUp.setOnClickListener {
-            val numberPicker = FeedRecordNumberPicker(this, viewModel)
+            val numberPicker = FeedRecordNumberPickerFragment(this, viewModel)
             numberPicker.showNumberPickerDialog()
         }
 
